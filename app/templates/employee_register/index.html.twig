@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello EmployeeRegisterController!
+{% endblock %}
+
+{% block body %}
+	<div class="employees-register-form-container">
+
+		<div class="home-age-main-container__nav-container">
+			<nav class="navbar navbar-ligth bg-ligth" >
+				<ul class="nav mx-auto">
+					<li class="nav-item">
+						<a class="nav-link active home-page-main-container__ancore-register " aria-current="page" href="{{path("home")}}">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link home-page-main-container__ancore-register " href="{{path("app_login")}}">Sign In</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link home-page-main-container__ancore-register " href="{{path("employee_register")}}">Create Account</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link disabled home-page-main-container__ancore-register " href="#" tabindex="-1" aria-disabled="true">Admin</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+
+
+		<div class="container my-5">
+			<div class="row  mx-auto">
+				<div class="col-md-6 mx-auto">
+					<div class="card mx-auto">
+						<div class="card-header">Collaborators Form</div>
+						<div class="card-body ">
+							<form action="{{path('registerCompleted')}}" method="POST">
+								<div class="form-group">
+
+									<input type="text" placeholder="Nickname" name="nickName" class="form-control"/>
+								</div>
+								
+								<div class="form-group">
+									<input type="text" placeholder="Rol" name="rol" class="form-control"/>
+								</div>
+								<div class="form-group">
+									<input type="text" placeholder="Salary" name="salary" class="form-control"/>
+								</div>
+								<div class="form-group">
+									<input type="text" placeholder="Department" name="department" class="form-control"/>
+								</div>
+								<div class="form-group">
+									<input type="text" placeholder="credentials" name="credentials" class="form-control"/>
+								</div>
+								<div class="form-group">
+									<input type="text" placeholder="Password" name="password" class="form-control"/>
+								</div>
+								<input type="submit" class="btn btn-block btn-primary" value="Create Record" onClick="{{path("app_login")}}"/>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+{% endblock %}
