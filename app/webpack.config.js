@@ -1,16 +1,20 @@
+const { addStyleEntry } = require('@symfony/webpack-encore');
 var Encore = require('@symfony/webpack-encore');
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
-if (!Encore.isRuntimeEnvironmentConfigured()) {
-    Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev');
-}
+// if (!Encore.isRuntimeEnvironmentConfigured()) {
+//     Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev');
+// }
 
 Encore
     // directory where compiled assets will be stored
     .setOutputPath('public/build/')
     // public path used by the web server to access the output path
     .setPublicPath('/build')
+    .cleanupOutputBeforeBuild()
+    .enableSourceMaps(!Encore.isProduction())
+    
     // only needed for CDN's or sub-directory deploy
     //.setManifestKeyPrefix('build/')
 
@@ -20,17 +24,23 @@ Encore
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
-    .addEntry('app', './assets/app.js')
-    // .addStyleEntry('css/app', './assets/css/app.scss')
+    .addEntry('js/app', './assets/js/app.js')
+    .addStyleEntry('css/app', './assets/scss/app.scss')
+
+
+    // enables Sass/SCSS support
+    .enableSassLoader()
+
+
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
-    .enableStimulusBridge('./assets/controllers.json')
+    // .enableStimulusBridge('./assets/controllers.json')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
-    .splitEntryChunks()
+    // .splitEntryChunks()
 
     // will require an extra script tag for runtime.js
     // but, you probably want this, unless you're building a single-page app
-    .enableSingleRuntimeChunk()
+    // .enableSingleRuntimeChunk()
 
     /*
      * FEATURE CONFIG
@@ -39,24 +49,21 @@ Encore
      * list of features, see:
      * https://symfony.com/doc/current/frontend.html#adding-more-features
      */
-    .cleanupOutputBeforeBuild()
-    .enableBuildNotifications()
-    .enableSourceMaps(!Encore.isProduction())
+    // .enableBuildNotifications()
     // enables hashed filenames (e.g. app.abc123.css)
-    .enableVersioning(Encore.isProduction())
+    // .enableVersioning(Encore.isProduction())
 
-    .configureBabel((config) => {
-        config.plugins.push('@babel/plugin-proposal-class-properties');
-    })
+    // .configureBabel((config) => {
+    //     config.plugins.push('@babel/plugin-proposal-class-properties');
+    // })
 
     // enables @babel/preset-env polyfills
-    .configureBabelPresetEnv((config) => {
-        config.useBuiltIns = 'usage';
-        config.corejs = 3;
-    })
+    // .configureBabelPresetEnv((config) => {
+    //     config.useBuiltIns = 'usage';
+    //     config.corejs = 3;
+    // })
 
-    // enables Sass/SCSS support
-    .enableSassLoader()
+    
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()
@@ -69,7 +76,7 @@ Encore
     //.enableIntegrityHashes(Encore.isProduction())
 
     // uncomment if you're having problems with a jQuery plugin
-    .autoProvidejQuery()
+    //.autoProvidejQuery()
 ;
 
 module.exports = Encore.getWebpackConfig();

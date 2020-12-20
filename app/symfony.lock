@@ -118,7 +118,7 @@
         ]
     },
     "symfony/asset": {
-        "version": "v5.2.0"
+        "version": "v5.2.1"
     },
     "symfony/cache": {
         "version": "v5.2.0"
