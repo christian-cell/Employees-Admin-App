@@ -1,4 +1,9 @@
-.employeesRecords-container{
-    display:flex;
-    flex-wrap: wrap;
+.employees-records-main-container{
+    
+    text-align: center;
+
+    &__table-form-container{
+        width:80%;
+        
+    }
 }
