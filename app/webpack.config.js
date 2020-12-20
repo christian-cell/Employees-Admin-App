@@ -30,7 +30,7 @@ Encore
 
     // enables Sass/SCSS support
     .enableSassLoader()
-
+    .autoProvidejQuery()
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     // .enableStimulusBridge('./assets/controllers.json')
